@@ -5,11 +5,17 @@
         Title="Mahapps demo" 
         Height="350" 
         Width="525">
+
+    <DockPanel>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center">
+            <Button x:Name="ShowPageOne"
+                    Content="Show page one"/>
+            <Button x:Name="ShowPageTwo"
+                    Content="Show page two"/>
+        </StackPanel>
     
-    <StackPanel>
-        <TextBox x:Name="Name" />
-        <Button x:Name="SayHello"
-            Content="Click Me" />
-    </StackPanel>
+        <ContentControl x:Name="ActiveItem" />
+    </DockPanel>
 
 </Controls:MetroWindow>

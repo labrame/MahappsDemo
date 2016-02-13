@@ -8,29 +8,21 @@ using System.Windows;
 
 namespace MahappsDemo
 {
-    public class ShellViewModel : PropertyChangedBase  
-    { 
-        string _name ;
-
-        public string Name { 
-            get { return _name; }
-            set
-            {
-                _name = value;
-                NotifyOfPropertyChange(() => Name);
-                NotifyOfPropertyChange(() => CanSayHello);
-            }
-        }
-
-        public bool CanSayHello
+    public class ShellViewModel : Conductor<Object>
+    {
+        public ShellViewModel()
         {
-            get { return !string.IsNullOrWhiteSpace(Name); }
+            ShowPageOne();
         }
 
-        public void SayHello()
+        private void ShowPageOne()
         {
-            MessageBox.Show(string.Format("Hello {0}", Name));
+            ActivateItem(new PageOneViewModel());
         }
 
+        private void ShowPageTwo()
+        {
+            ActivateItem(new PageTwoViewModel());
+        }
     }
 }
