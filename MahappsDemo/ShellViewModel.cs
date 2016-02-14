@@ -15,12 +15,12 @@ namespace MahappsDemo
             ShowPageOne();
         }
 
-        private void ShowPageOne()
+        public void ShowPageOne()
         {
             ActivateItem(new PageOneViewModel());
         }
 
-        private void ShowPageTwo()
+        public void ShowPageTwo()
         {
             ActivateItem(new PageTwoViewModel());
         }

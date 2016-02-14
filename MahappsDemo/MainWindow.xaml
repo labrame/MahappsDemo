@@ -10,9 +10,11 @@
         <StackPanel Orientation="Vertical"
                     HorizontalAlignment="Center">
             <Button x:Name="ShowPageOne"
-                    Content="Show page one"/>
+                    Content="Show page one"
+                    Style="{StaticResource AccentedSquareButtonStyle}"/>
             <Button x:Name="ShowPageTwo"
-                    Content="Show page two"/>
+                    Content="Show page two"
+                    Style="{StaticResource AccentedSquareButtonStyle}"/>
         </StackPanel>
     
         <ContentControl x:Name="ActiveItem" />

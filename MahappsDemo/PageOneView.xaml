@@ -1,12 +1,15 @@
 ﻿<UserControl x:Class="MahappsDemo.PageOneView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
 
     <StackPanel>
         <TextBlock FontSize="32">Page One</TextBlock>
-        <TextBox x:Name="Name" />
+        <TextBox x:Name="Name" 
+                 Controls:TextBoxHelper.Watermark="Enter your name" />
         <Button x:Name="SayHello"
-            Content="Click Me" />
+                Content="Click Me" 
+                Style="{StaticResource AccentedSquareButtonStyle}"/>
     </StackPanel>
     
 </UserControl>
