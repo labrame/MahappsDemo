@@ -1,11 +1,15 @@
-﻿using Caliburn.Micro;
-using System.Windows;
+﻿using System.Windows;
 
 namespace MahappsDemo
 {
-    public class PageTwoViewModel : PropertyChangedBase
+    public class PageTwoViewModel : BaseTabViewModel
     {
         string _name;
+
+        public PageTwoViewModel()
+        {
+            DisplayName = "Page two";
+        }
 
         public string Name
         {

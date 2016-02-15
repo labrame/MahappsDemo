@@ -1,28 +1,19 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace MahappsDemo
 {
-    public class ShellViewModel : Conductor<Object>
+    public class ShellViewModel : Conductor<Object>.Collection.OneActive
     {
         public ShellViewModel()
         {
-            ShowPageOne();
-        }
+            DisplayName = "MAHAPPS DEMO";
 
-        public void ShowPageOne()
-        {
-            ActivateItem(new PageOneViewModel());
-        }
+            var pageOne = new PageOneViewModel();
+            var pageTwo = new PageTwoViewModel();
 
-        public void ShowPageTwo()
-        {
-            ActivateItem(new PageTwoViewModel());
+            Items.Add(pageOne);
+            Items.Add(pageTwo);
         }
     }
 }

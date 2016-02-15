@@ -3,9 +3,14 @@ using System.Windows;
 
 namespace MahappsDemo
 {
-    public class PageOneViewModel : PropertyChangedBase
+    public class PageOneViewModel : BaseTabViewModel
     {
         string _name;
+
+        public PageOneViewModel()
+        {
+            DisplayName = "Page one";
+        }
 
         public string Name
         {
