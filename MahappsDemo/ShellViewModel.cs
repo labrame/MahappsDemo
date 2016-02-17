@@ -4,16 +4,12 @@ using System;
 namespace MahappsDemo
 {
     public class ShellViewModel : Conductor<Object>.Collection.OneActive
-    {
-        public ShellViewModel()
+    {   
+        public ShellViewModel(PageOneViewModel pageOne, PageTwoViewModel pageTwo)
         {
-            DisplayName = "MAHAPPS DEMO";
-
-            var pageOne = new PageOneViewModel();
-            var pageTwo = new PageTwoViewModel();
-
             Items.Add(pageOne);
             Items.Add(pageTwo);
+            DisplayName = "Mahapps Demo";
         }
     }
 }
