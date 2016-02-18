@@ -72,10 +72,11 @@
     <Compile Include="BaseTabViewModel.cs" />
     <Compile Include="DemoBootstrapper.cs" />
     <Compile Include="IShell.cs" />
-    <Compile Include="PageOneViewModel.cs" />
-    <Compile Include="PageTwoViewModel.cs" />
+    <Compile Include="ViewModel\PageOneViewModel.cs" />
+    <Compile Include="ViewModel\PageTwoViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="TypedAutofacBootStrapper.cs" />
+    <Compile Include="ViewModel\FretBoardViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,11 +85,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PageOneView.xaml">
+    <Page Include="View\FretBoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PageTwoView.xaml">
+    <Page Include="View\PageOneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PageTwoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

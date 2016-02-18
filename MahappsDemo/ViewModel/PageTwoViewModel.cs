@@ -1,15 +1,14 @@
-﻿using Caliburn.Micro;
-using System.Windows;
+﻿using System.Windows;
 
-namespace MahappsDemo
+namespace MahappsDemo.ViewModel
 {
-    public class PageOneViewModel : BaseTabViewModel
+    public class PageTwoViewModel : BaseTabViewModel
     {
         string _name;
 
-        public PageOneViewModel()
+        public PageTwoViewModel()
         {
-            DisplayName = "Page one";
+            DisplayName = "Page two";
         }
 
         public string Name
@@ -30,7 +29,7 @@ namespace MahappsDemo
 
         public void SayHello()
         {
-            MessageBox.Show(string.Format("Hello {0}", Name));
+            MessageBox.Show(string.Format("Bonjour {0}", Name));
         }
     }
 }
