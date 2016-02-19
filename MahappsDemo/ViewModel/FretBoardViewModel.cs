@@ -12,5 +12,7 @@ namespace MahappsDemo.ViewModel
         {
             DisplayName = "Button test";
         }
+
+
     }
 }
