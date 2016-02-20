@@ -72,6 +72,7 @@
     <Compile Include="BaseTabViewModel.cs" />
     <Compile Include="DemoBootstrapper.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="ViewModel\BubblingViewModel.cs" />
     <Compile Include="ViewModel\PageOneViewModel.cs" />
     <Compile Include="ViewModel\PageTwoViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
@@ -85,6 +86,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\BubblingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\FretBoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

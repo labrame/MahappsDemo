@@ -6,11 +6,12 @@ namespace MahappsDemo
 {
     public class ShellViewModel : Conductor<Object>.Collection.OneActive
     {   
-        public ShellViewModel(PageOneViewModel pageOne, PageTwoViewModel pageTwo, FretBoardViewModel fretBoard)
+        public ShellViewModel(PageOneViewModel pageOne, PageTwoViewModel pageTwo, FretBoardViewModel fretBoard, BubblingViewModel bubbling)
         {
             Items.Add(pageOne);
             Items.Add(pageTwo);
             Items.Add(fretBoard);
+            Items.Add(bubbling);
             DisplayName = "Mahapps Demo";
         }
     }
