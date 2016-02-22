@@ -4,68 +4,84 @@
       xmlns:cal="http://www.caliburnproject.org"
       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
 
-    <StackPanel Orientation="Horizontal">
-        <ItemsControl x:Name="EString">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>                                 
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <ItemsControl x:Name="AString">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+            <ItemsControl x:Name="EString">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <ItemsControl x:Name="DString">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <ItemsControl x:Name="AString">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <ItemsControl x:Name="GString">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <ItemsControl x:Name="DString">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <ItemsControl x:Name="BString">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <ItemsControl x:Name="GString">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        <ItemsControl x:Name="E2String">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            <ItemsControl x:Name="BString">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-    </StackPanel>
+            <ItemsControl x:Name="E2String">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock Name="Question" IsEnabled="True">this is a question</TextBlock>
+            <TextBlock Name="Answer" IsEnabled="{Binding IsAnswerVisible}"/>
+        </StackPanel>
+
+    </Grid>
 
 </UserControl>
 

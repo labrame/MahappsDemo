@@ -7,6 +7,8 @@ namespace MahappsDemo.ViewModel
 {
     public class FretBoardTwoViewModel : BaseTabViewModel
     {
+        public readonly string[] _scale;
+
         public BindableCollection<Fret> EString { get; set; }
         public BindableCollection<Fret> AString { get; set; }
         public BindableCollection<Fret> DString { get; set; }
@@ -24,6 +26,11 @@ namespace MahappsDemo.ViewModel
             GString = CreateString(Enum.Standard.G);
             BString = CreateString(Enum.Standard.B);
             E2String = CreateString(Enum.Standard.e);
+
+            _scale = new string[] { "A", "A#Bb", "B", "C", "C#Db", "D", "D#Eb", "E", "F", "F#Gb", "G", "G#Ab" };
+
+            IsAnswerVisible = false;
+            CreateNewQuestion();
         }
 
         public void FretString(Fret fret)
@@ -43,5 +50,45 @@ namespace MahappsDemo.ViewModel
 
             return stringModel;
         }
+
+        private void CreateNewQuestion()
+        {
+            Question = "This is the question";
+        }
+
+        private string _question;
+        public string Question
+        {
+            get { return _question; }
+            set
+            {
+                _question = value;
+                NotifyOfPropertyChange(() => Question);
+            }
+        }
+
+        private string _answer;
+        public string Answer
+        {
+            get { return _answer; }
+            set
+            {
+                _answer = value;
+                NotifyOfPropertyChange(() => Answer);
+            }
+        }
+
+        private bool _isAnswerVisible;
+        public bool IsAnswerVisible
+        {
+            get { return _isAnswerVisible; }
+            set
+            {
+                _isAnswerVisible = value;
+                NotifyOfPropertyChange(() => IsAnswerVisible);
+            }
+        }
+
+
     }
 }
