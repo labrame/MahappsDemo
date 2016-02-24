@@ -79,6 +79,9 @@
         <StackPanel Grid.Column="1" Grid.Row="0">
             <TextBlock Name="Question" IsEnabled="True">this is a question</TextBlock>
             <TextBlock Name="Answer" IsEnabled="{Binding IsAnswerVisible}"/>
+            <Button x:Name="DisplayNextQuestion"
+                Content="Next question" 
+                Style="{StaticResource AccentedSquareButtonStyle}"/>
         </StackPanel>
 
     </Grid>

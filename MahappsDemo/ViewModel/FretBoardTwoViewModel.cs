@@ -1,17 +1,19 @@
 ﻿using Caliburn.Micro;
 using MahappsDemo.Model;
 using System;
-using System.Windows;
+using System.Linq;
 using Enum = MahappsDemo.Model.Enum;
 
 namespace MahappsDemo.ViewModel
 {
     public class FretBoardTwoViewModel : BaseTabViewModel
     {
-        public readonly string[] _scale;
-        public readonly string[] _string;
-        public readonly Random _random;
-        public readonly string _template;
+        private readonly string[] _scale;
+        private readonly string[] _string;
+        private readonly Random _random;
+
+        private string _requestedString;
+        private string _requestedNote;
 
         public BindableCollection<Fret> EString { get; set; }
         public BindableCollection<Fret> AString { get; set; }
@@ -36,13 +38,22 @@ namespace MahappsDemo.ViewModel
             _random = new Random();
 
             IsAnswerVisible = false;
+            IsNextQuestionButtonVisible = false;
             CreateNewQuestion();
         }
 
         public void FretString(Fret fret)
         {
-            MessageBox.Show(string.Format("Just fretted position {0} on string {1}", 
-                fret.Position, fret.StringName));
+            var isCorrectAnswer = ValidateAnswer(fret);
+            CreateAnswer(isCorrectAnswer);
+
+            if (isCorrectAnswer) CreateNewQuestion();
+        }
+
+        public void DisplayNextQuestion()
+        {
+            IsAnswerVisible = false;
+            CreateNewQuestion();
         }
 
         private string _question;
@@ -78,6 +89,17 @@ namespace MahappsDemo.ViewModel
             }
         }
 
+        private bool _isNextQuestionButtonVisible;
+        public bool IsNextQuestionButtonVisible
+        {
+            get { return _isNextQuestionButtonVisible; }
+            set
+            {
+                _isNextQuestionButtonVisible = value;
+                NotifyOfPropertyChange(() => IsNextQuestionButtonVisible);
+            }
+        }
+
         private BindableCollection<Fret> CreateString(Enum.Standard stringName)
         {
             var stringModel = new BindableCollection<Fret>();
@@ -92,7 +114,25 @@ namespace MahappsDemo.ViewModel
 
         private void CreateNewQuestion()
         {
-            Question = "This is the question";
+            _requestedNote = RandomNote();
+            _requestedString = RandomString();
+            IsAnswerVisible = false;
+            Question = string.Format("Find {0} on the {1} string", _requestedNote, _requestedString);
+        }
+
+        private void CreateAnswer(bool isCorrectAnswer)
+        {
+            IsAnswerVisible = true;
+            if (isCorrectAnswer)
+            {
+                Answer = "This is the correct answer!";
+                IsNextQuestionButtonVisible = true;
+            }
+            else
+            {
+                Answer = "This is incorrect try Again";
+                IsNextQuestionButtonVisible = false;
+            }
         }
 
         private string RandomString()
@@ -103,6 +143,11 @@ namespace MahappsDemo.ViewModel
         private string RandomNote()
         {
             return _scale[_random.Next(0, 11)];
+        }
+
+        private bool ValidateAnswer(Fret fret)
+        {
+           return true;
         }
     }
 }
