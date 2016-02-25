@@ -6,7 +6,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="260"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -81,6 +81,7 @@
             <TextBlock Name="Answer" IsEnabled="{Binding IsAnswerVisible}"/>
             <Button x:Name="DisplayNextQuestion"
                 Content="Next question" 
+                IsEnabled="{Binding IsNextQuestionButtonVisible}"
                 Style="{StaticResource AccentedSquareButtonStyle}"/>
         </StackPanel>
 

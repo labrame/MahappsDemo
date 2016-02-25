@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using MahappsDemo.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Enum = MahappsDemo.Model.Enum;
 
@@ -8,8 +9,8 @@ namespace MahappsDemo.ViewModel
 {
     public class FretBoardTwoViewModel : BaseTabViewModel
     {
-        private readonly string[] _scale;
-        private readonly string[] _string;
+        private readonly List<string> _scale;
+        private readonly List<string> _string;
         private readonly Random _random;
 
         private string _requestedString;
@@ -33,8 +34,8 @@ namespace MahappsDemo.ViewModel
             BString = CreateString(Enum.Standard.B);
             E2String = CreateString(Enum.Standard.e);
 
-            _scale = new string[] { "A", "A#Bb", "B", "C", "C#Db", "D", "D#Eb", "E", "F", "F#Gb", "G", "G#Ab" };
-            _string = new string[] { "E", "A", "D", "G", "B", "e" };
+            _scale = new List<string> { "A", "A#Bb", "B", "C", "C#Db", "D", "D#Eb", "E", "F", "F#Gb", "G", "G#Ab" };
+            _string = new List<string> { "E", "A", "D", "G", "B", "e" };
             _random = new Random();
 
             IsAnswerVisible = false;
@@ -46,8 +47,6 @@ namespace MahappsDemo.ViewModel
         {
             var isCorrectAnswer = ValidateAnswer(fret);
             CreateAnswer(isCorrectAnswer);
-
-            if (isCorrectAnswer) CreateNewQuestion();
         }
 
         public void DisplayNextQuestion()
@@ -147,7 +146,14 @@ namespace MahappsDemo.ViewModel
 
         private bool ValidateAnswer(Fret fret)
         {
-           return true;
+            //To be sure to always have the result is the list create a double scale
+            List<string> doubleScale = new List<string>();
+            doubleScale.AddRange(_scale);
+            doubleScale.AddRange(_scale);
+
+            int stringZeroPosition = doubleScale.IndexOf(fret.StringName.ToString());
+            var frettedNote = doubleScale[stringZeroPosition + fret.Position];
+            return frettedNote == _requestedNote.ToString();
         }
     }
 }
