@@ -83,6 +83,9 @@
                 Content="Next question" 
                 IsEnabled="{Binding IsNextQuestionButtonVisible}"
                 Style="{StaticResource AccentedSquareButtonStyle}"/>
+            <Button x:Name="DisplayPositionOrNote"
+                Content="Display Position or Note" 
+                Style="{StaticResource AccentedSquareButtonStyle}"/>
         </StackPanel>
 
     </Grid>

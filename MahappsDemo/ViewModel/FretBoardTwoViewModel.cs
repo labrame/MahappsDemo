@@ -10,11 +10,13 @@ namespace MahappsDemo.ViewModel
     public class FretBoardTwoViewModel : BaseTabViewModel
     {
         private readonly List<string> _scale;
+        private readonly List<string> _doubleScale;
         private readonly List<string> _string;
         private readonly Random _random;
 
         private string _requestedString;
         private string _requestedNote;
+        private bool _isPositionDisplayed;
 
         public BindableCollection<Fret> EString { get; set; }
         public BindableCollection<Fret> AString { get; set; }
@@ -38,6 +40,13 @@ namespace MahappsDemo.ViewModel
             _string = new List<string> { "E", "A", "D", "G", "B", "e" };
             _random = new Random();
 
+            //To be sure to always have the result is the list create a double scale
+            _doubleScale = new List<string>();
+            _doubleScale.AddRange(_scale);
+            _doubleScale.AddRange(_scale);
+
+            _isPositionDisplayed = true;
+
             IsAnswerVisible = false;
             IsNextQuestionButtonVisible = false;
             CreateNewQuestion();
@@ -53,6 +62,11 @@ namespace MahappsDemo.ViewModel
         {
             IsAnswerVisible = false;
             CreateNewQuestion();
+        }
+
+        public void DisplayPositionOrNote()
+        {
+            _isPositionDisplayed = !_isPositionDisplayed;
         }
 
         private string _question;
@@ -102,10 +116,16 @@ namespace MahappsDemo.ViewModel
         private BindableCollection<Fret> CreateString(Enum.Standard stringName)
         {
             var stringModel = new BindableCollection<Fret>();
+            var twelveNoteOfString = GetConsecutiveNote(stringName.ToString());
 
             for (int i = 0; i < 12; i++)
             {
-                stringModel.Add(new Fret() { StringName = stringName, Position = i });
+                stringModel.Add(new Fret()
+                {
+                    StringName = stringName,
+                    Position = i,
+                    NoteName = twelveNoteOfString[i]
+                });
             }
 
             return stringModel;
@@ -146,14 +166,28 @@ namespace MahappsDemo.ViewModel
 
         private bool ValidateAnswer(Fret fret)
         {
-            //To be sure to always have the result is the list create a double scale
-            List<string> doubleScale = new List<string>();
-            doubleScale.AddRange(_scale);
-            doubleScale.AddRange(_scale);
-
-            int stringZeroPosition = doubleScale.IndexOf(fret.StringName.ToString());
-            var frettedNote = doubleScale[stringZeroPosition + fret.Position];
+            int stringZeroPosition = _doubleScale.IndexOf(fret.StringName.ToString());
+            var frettedNote = _doubleScale[stringZeroPosition + fret.Position];
             return frettedNote == _requestedNote.ToString();
+        }
+
+        private List<string> GetConsecutiveNote(string startNote)
+        {
+            var twelveNotes = new List<string>();
+
+            int stringZeroPosition = _doubleScale.IndexOf(startNote);
+
+            for (var i = stringZeroPosition; i < 11; i++)
+            {
+                twelveNotes.Add(_doubleScale[i]);
+            }
+
+            for (int i = 0; i < stringZeroPosition; i++)
+            {
+                twelveNotes.Add(_doubleScale[i]);
+            }
+
+            return twelveNotes;
         }
     }
 }

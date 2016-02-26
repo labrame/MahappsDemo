@@ -5,5 +5,7 @@
         public Enum.Standard StringName { get; set; }
 
         public int Position { get; set; }
+
+        public string NoteName { get; set; }
     }
 }
