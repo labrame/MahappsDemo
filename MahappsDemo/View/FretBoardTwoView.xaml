@@ -18,7 +18,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding Position}" cal:Message.Attach="FretString($dataContext)" Width="40"/>
+                            <Button Content="{Binding Position}" 
+                                    cal:Message.Attach="FretString($dataContext)" 
+                                    Width="40" 
+                                    Visibility="{Binding IsPositionVisible}"/>
+                            <Button Content="{Binding NoteName}" 
+                                    cal:Message.Attach="FretString($dataContext)" 
+                                    Width="40" 
+                                    Visibility="{Binding IsNoteNameVisible}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

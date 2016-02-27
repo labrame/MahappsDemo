@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Enum = MahappsDemo.Model.Enum;
+using System.Windows;
 
 namespace MahappsDemo.ViewModel
 {
@@ -29,13 +30,6 @@ namespace MahappsDemo.ViewModel
         {
             DisplayName = "Fretboard two";
 
-            EString = CreateString(Enum.Standard.E); 
-            AString = CreateString(Enum.Standard.A);
-            DString = CreateString(Enum.Standard.D);
-            GString = CreateString(Enum.Standard.G);
-            BString = CreateString(Enum.Standard.B);
-            E2String = CreateString(Enum.Standard.e);
-
             _scale = new List<string> { "A", "A#Bb", "B", "C", "C#Db", "D", "D#Eb", "E", "F", "F#Gb", "G", "G#Ab" };
             _string = new List<string> { "E", "A", "D", "G", "B", "e" };
             _random = new Random();
@@ -44,12 +38,20 @@ namespace MahappsDemo.ViewModel
             _doubleScale = new List<string>();
             _doubleScale.AddRange(_scale);
             _doubleScale.AddRange(_scale);
-
-            _isPositionDisplayed = true;
-
+            
             IsAnswerVisible = false;
             IsNextQuestionButtonVisible = false;
             CreateNewQuestion();
+
+            EString = CreateString(Enum.Standard.E);
+            AString = CreateString(Enum.Standard.A);
+            DString = CreateString(Enum.Standard.D);
+            GString = CreateString(Enum.Standard.G);
+            BString = CreateString(Enum.Standard.B);
+            E2String = CreateString(Enum.Standard.e);
+
+            _isPositionDisplayed = true;
+            DisplayPositionOrNote();
         }
 
         public void FretString(Fret fret)
@@ -67,6 +69,39 @@ namespace MahappsDemo.ViewModel
         public void DisplayPositionOrNote()
         {
             _isPositionDisplayed = !_isPositionDisplayed;
+
+            if(_isPositionDisplayed)
+            {
+                IsNoteNameVisible = Visibility.Visible;
+                IsPositionVisible = Visibility.Collapsed;
+            }
+            else
+            {
+                IsNoteNameVisible = Visibility.Collapsed;
+                IsPositionVisible = Visibility.Visible;
+            }
+        }
+
+        private Visibility _isNoteNameVisible;
+        public Visibility IsNoteNameVisible
+        {
+            get { return _isNoteNameVisible; }
+            set
+            {
+                _isNoteNameVisible = value;
+                NotifyOfPropertyChange(() => IsNoteNameVisible);
+            }
+        }
+
+        private Visibility _isPositionVisible;
+        public Visibility IsPositionVisible
+        {
+            get { return _isPositionVisible; }
+            set
+            {
+                _isPositionVisible = value;
+                NotifyOfPropertyChange(() => IsPositionVisible);
+            }
         }
 
         private string _question;
@@ -175,9 +210,9 @@ namespace MahappsDemo.ViewModel
         {
             var twelveNotes = new List<string>();
 
-            int stringZeroPosition = _doubleScale.IndexOf(startNote);
+            int stringZeroPosition = _doubleScale.IndexOf(startNote.ToUpper());
 
-            for (var i = stringZeroPosition; i < 11; i++)
+            for (var i = stringZeroPosition; i <= 11; i++)
             {
                 twelveNotes.Add(_doubleScale[i]);
             }
