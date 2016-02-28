@@ -235,7 +235,7 @@ namespace MahappsDemo.ViewModel
         {
             int stringZeroPosition = _doubleScale.IndexOf(fret.StringName.ToString());
             var frettedNote = _doubleScale[stringZeroPosition + fret.Position];
-            return frettedNote == _requestedNote.ToString();
+            return frettedNote == _requestedNote.ToString() && fret.StringName.ToString() == _requestedString;
         }
 
         private List<string> GetConsecutiveNote(string startNote)
