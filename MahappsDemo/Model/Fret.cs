@@ -1,4 +1,6 @@
-﻿namespace MahappsDemo.Model
+﻿using System.Windows;
+
+namespace MahappsDemo.Model
 {
     public class Fret
     {
@@ -7,5 +9,9 @@
         public int Position { get; set; }
 
         public string NoteName { get; set; }
+
+        public Visibility IsPositionVisible { get; set; }
+
+        public Visibility IsNoteNameVisible { get; set; }
     }
 }

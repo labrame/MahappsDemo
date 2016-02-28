@@ -19,12 +19,71 @@ namespace MahappsDemo.ViewModel
         private string _requestedNote;
         private bool _isPositionDisplayed;
 
-        public BindableCollection<Fret> EString { get; set; }
-        public BindableCollection<Fret> AString { get; set; }
-        public BindableCollection<Fret> DString { get; set; }
-        public BindableCollection<Fret> GString { get; set; }
-        public BindableCollection<Fret> BString { get; set; }
-        public BindableCollection<Fret> E2String { get; set; }
+        private BindableCollection<Fret> _Estring;
+        public BindableCollection<Fret> EString
+        {
+            get { return _Estring; }
+            set
+            {
+                _Estring = value;
+                NotifyOfPropertyChange(() => EString);
+            }
+        }
+
+        private BindableCollection<Fret> _AString;
+        public BindableCollection<Fret> AString
+        {
+            get { return _AString; }
+            set
+            {
+                _AString = value;
+                NotifyOfPropertyChange(() => AString);
+            }
+        }
+
+        private BindableCollection<Fret> _DString;
+        public BindableCollection<Fret> DString
+        {
+            get { return _DString; }
+            set
+            {
+                _DString = value;
+                NotifyOfPropertyChange(() => DString);
+            }
+        }
+
+        private BindableCollection<Fret> _GString;
+        public BindableCollection<Fret> GString
+        {
+            get { return _GString; }
+            set
+            {
+                _GString = value;
+                NotifyOfPropertyChange(() => GString);
+            }
+        }
+
+        private BindableCollection<Fret> _BString;
+        public BindableCollection<Fret> BString
+        {
+            get { return _BString; }
+            set
+            {
+                _BString = value;
+                NotifyOfPropertyChange(() => BString);
+            }
+        }
+
+        private BindableCollection<Fret> _E2String;
+        public BindableCollection<Fret> E2String
+        {
+            get { return _E2String; }
+            set
+            {
+                _E2String = value;
+                NotifyOfPropertyChange(() => E2String);
+            }
+        }
 
         public FretBoardTwoViewModel()
         {
@@ -39,19 +98,12 @@ namespace MahappsDemo.ViewModel
             _doubleScale.AddRange(_scale);
             _doubleScale.AddRange(_scale);
             
-            IsAnswerVisible = false;
+            IsAnswerVisible = Visibility.Hidden;
             IsNextQuestionButtonVisible = false;
             CreateNewQuestion();
 
-            EString = CreateString(Enum.Standard.E);
-            AString = CreateString(Enum.Standard.A);
-            DString = CreateString(Enum.Standard.D);
-            GString = CreateString(Enum.Standard.G);
-            BString = CreateString(Enum.Standard.B);
-            E2String = CreateString(Enum.Standard.e);
-
             _isPositionDisplayed = true;
-            DisplayPositionOrNote();
+            CreateAllString();            
         }
 
         public void FretString(Fret fret)
@@ -62,7 +114,7 @@ namespace MahappsDemo.ViewModel
 
         public void DisplayNextQuestion()
         {
-            IsAnswerVisible = false;
+            IsAnswerVisible = Visibility.Hidden;
             CreateNewQuestion();
         }
 
@@ -70,40 +122,8 @@ namespace MahappsDemo.ViewModel
         {
             _isPositionDisplayed = !_isPositionDisplayed;
 
-            if(_isPositionDisplayed)
-            {
-                IsNoteNameVisible = Visibility.Visible;
-                IsPositionVisible = Visibility.Collapsed;
-            }
-            else
-            {
-                IsNoteNameVisible = Visibility.Collapsed;
-                IsPositionVisible = Visibility.Visible;
-            }
+            CreateAllString();
         }
-
-        private Visibility _isNoteNameVisible;
-        public Visibility IsNoteNameVisible
-        {
-            get { return _isNoteNameVisible; }
-            set
-            {
-                _isNoteNameVisible = value;
-                NotifyOfPropertyChange(() => IsNoteNameVisible);
-            }
-        }
-
-        private Visibility _isPositionVisible;
-        public Visibility IsPositionVisible
-        {
-            get { return _isPositionVisible; }
-            set
-            {
-                _isPositionVisible = value;
-                NotifyOfPropertyChange(() => IsPositionVisible);
-            }
-        }
-
         private string _question;
         public string Question
         {
@@ -126,8 +146,8 @@ namespace MahappsDemo.ViewModel
             }
         }
 
-        private bool _isAnswerVisible;
-        public bool IsAnswerVisible
+        private Visibility _isAnswerVisible;
+        public Visibility IsAnswerVisible
         {
             get { return _isAnswerVisible; }
             set
@@ -148,6 +168,16 @@ namespace MahappsDemo.ViewModel
             }
         }
 
+        private void CreateAllString()
+        {
+            EString = CreateString(Enum.Standard.E);
+            AString = CreateString(Enum.Standard.A);
+            DString = CreateString(Enum.Standard.D);
+            GString = CreateString(Enum.Standard.G);
+            BString = CreateString(Enum.Standard.B);
+            E2String = CreateString(Enum.Standard.e);
+        }
+
         private BindableCollection<Fret> CreateString(Enum.Standard stringName)
         {
             var stringModel = new BindableCollection<Fret>();
@@ -159,7 +189,9 @@ namespace MahappsDemo.ViewModel
                 {
                     StringName = stringName,
                     Position = i,
-                    NoteName = twelveNoteOfString[i]
+                    NoteName = twelveNoteOfString[i],
+                    IsNoteNameVisible = _isPositionDisplayed ? Visibility.Collapsed : Visibility.Visible,
+                    IsPositionVisible = _isPositionDisplayed ? Visibility.Visible : Visibility.Collapsed
                 });
             }
 
@@ -170,13 +202,13 @@ namespace MahappsDemo.ViewModel
         {
             _requestedNote = RandomNote();
             _requestedString = RandomString();
-            IsAnswerVisible = false;
+            IsAnswerVisible = Visibility.Hidden;
             Question = string.Format("Find {0} on the {1} string", _requestedNote, _requestedString);
         }
 
         private void CreateAnswer(bool isCorrectAnswer)
         {
-            IsAnswerVisible = true;
+            IsAnswerVisible = Visibility.Visible;
             if (isCorrectAnswer)
             {
                 Answer = "This is the correct answer!";
