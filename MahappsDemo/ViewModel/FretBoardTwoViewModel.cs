@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Enum = MahappsDemo.Model.Enum;
 using System.Windows;
+using MahappsDemo.Repository;
 
 namespace MahappsDemo.ViewModel
 {
@@ -105,6 +106,18 @@ namespace MahappsDemo.ViewModel
             _isPositionDisplayed = true;
             CreateAllString();            
         }
+
+        public void CreateNewTest()
+        {
+            using (var db = new TestContext())
+            {
+                var test = new Test() { DateAdded = DateTime.Now };
+                db.Tests.Add(test);
+                db.SaveChanges();
+            }
+        }
+
+        public string TestDescription { get; set; }
 
         public void FretString(Fret fret)
         {

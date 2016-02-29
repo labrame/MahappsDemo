@@ -119,15 +119,35 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
-            <TextBlock Name="Question" IsEnabled="True">this is a question</TextBlock>
-            <TextBlock Name="Answer" Visibility="{Binding IsAnswerVisible}"/>
+            
+            <Button x:Name="CreateNewTest"
+                    Content="Create new Test"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Margin="10 10 10 10"/>
+
+            <TextBlock Name="TestDescription" 
+                       Visibility="{Binding IsAnswerVisible}"
+                       Margin="10 10 10 10"/>
+
+            <TextBlock Name="Question" 
+                       IsEnabled="True"
+                       Margin="10 10 10 10">This is a question</TextBlock>
+            
+            <TextBlock Name="Answer" 
+                       Visibility="{Binding IsAnswerVisible}"
+                       Margin="10 10 10 10"/>
+            
             <Button x:Name="DisplayNextQuestion"
-                Content="Next question" 
-                IsEnabled="{Binding IsNextQuestionButtonVisible}"
-                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    Content="Next question" 
+                    IsEnabled="{Binding IsNextQuestionButtonVisible}"
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                     Margin="10 10 10 10"/>
+            
             <Button x:Name="DisplayPositionOrNote"
-                Content="Display Position or Note" 
-                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                    Content="Display Position or Note" 
+                    Style="{StaticResource AccentedSquareButtonStyle}"
+                    Margin="10 10 10 10"/>
+            
         </StackPanel>
 
     </Grid>
