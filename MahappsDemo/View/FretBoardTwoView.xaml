@@ -119,6 +119,11 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="0">
+            <Label Content="Test Name:"/>
+            <TextBox x:Name="TestName"/>
+            
+            <Label Content="Number of question"/>
+            <TextBox x:Name="NumberOfQUestion"/>
             
             <Button x:Name="CreateNewTest"
                     Content="Create new Test"

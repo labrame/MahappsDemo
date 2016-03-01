@@ -86,6 +86,10 @@ namespace MahappsDemo.ViewModel
             }
         }
 
+        public string TestName { get; set; }
+
+        public string NumberOfQuestion { get; set; }
+
         public FretBoardTwoViewModel()
         {
             DisplayName = "Fretboard two";
@@ -111,7 +115,7 @@ namespace MahappsDemo.ViewModel
         {
             using (var db = new TestContext())
             {
-                var test = new Test() { DateAdded = DateTime.Now };
+                var test = new Test() { DateAdded = DateTime.Now, Name = TestName};
                 db.Tests.Add(test);
                 db.SaveChanges();
             }
