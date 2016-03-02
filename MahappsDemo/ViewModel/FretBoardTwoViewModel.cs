@@ -86,9 +86,22 @@ namespace MahappsDemo.ViewModel
             }
         }
 
+        private Test Test { get; set; }
+
         public string TestName { get; set; }
 
         public string NumberOfQuestion { get; set; }
+
+        private bool _isCreateNewTestEnabled;
+        public bool IsCreateNewTestEnabled
+        {
+            get { return _isCreateNewTestEnabled; }
+            set
+            {
+                _isCreateNewTestEnabled = value;
+                NotifyOfPropertyChange(() => IsCreateNewTestEnabled);
+            }
+        }
 
         public FretBoardTwoViewModel()
         {
@@ -108,8 +121,11 @@ namespace MahappsDemo.ViewModel
             CreateNewQuestion();
 
             _isPositionDisplayed = true;
-            CreateAllString();            
+            CreateAllString();
+
+            EnableCreateTest(true);
         }
+
 
         public void CreateNewTest()
         {
@@ -118,6 +134,11 @@ namespace MahappsDemo.ViewModel
                 var test = new Test() { DateAdded = DateTime.Now, Name = TestName};
                 db.Tests.Add(test);
                 db.SaveChanges();
+
+                //retrieve test
+                Test = test;
+
+                EnableCreateTest(false);
             }
         }
 
@@ -272,6 +293,11 @@ namespace MahappsDemo.ViewModel
             }
 
             return twelveNotes;
+        }
+
+        private void EnableCreateTest(bool isEnabled)
+        {
+            IsCreateNewTestEnabled = isEnabled;
         }
     }
 }

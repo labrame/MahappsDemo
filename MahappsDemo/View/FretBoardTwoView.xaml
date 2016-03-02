@@ -120,14 +120,17 @@
 
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Content="Test Name:"/>
-            <TextBox x:Name="TestName"/>
+            <TextBox x:Name="TestName"
+                     IsEnabled="{Binding IsCreateNewTestEnabled}"/>
             
             <Label Content="Number of question"/>
-            <TextBox x:Name="NumberOfQUestion"/>
+            <TextBox x:Name="NumberOfQUestion"
+                     IsEnabled="{Binding IsCreateNewTestEnabled}"/>
             
             <Button x:Name="CreateNewTest"
                     Content="Create new Test"
                     Style="{StaticResource AccentedSquareButtonStyle}"
+                    IsEnabled="{Binding IsCreateNewTestEnabled}"
                     Margin="10 10 10 10"/>
 
             <TextBlock Name="TestDescription" 
