@@ -11,6 +11,8 @@ namespace MahappsDemo.ViewModel
 {
     public class FretBoardTwoViewModel : BaseTabViewModel
     {
+        private const string _statusMessage = "Question {0} or of {1}";
+
         private readonly List<string> _scale;
         private readonly List<string> _doubleScale;
         private readonly List<string> _string;
@@ -19,6 +21,7 @@ namespace MahappsDemo.ViewModel
         private string _requestedString;
         private string _requestedNote;
         private bool _isPositionDisplayed;
+        private int _currentQuestion;
 
         private BindableCollection<Fret> _Estring;
         public BindableCollection<Fret> EString
@@ -90,7 +93,7 @@ namespace MahappsDemo.ViewModel
 
         public string TestName { get; set; }
 
-        public string NumberOfQuestion { get; set; }
+        public int NumberOfQuestion { get; set; }
 
         private bool _isCreateNewTestEnabled;
         public bool IsCreateNewTestEnabled
@@ -126,7 +129,6 @@ namespace MahappsDemo.ViewModel
             EnableCreateTest(true);
         }
 
-
         public void CreateNewTest()
         {
             using (var db = new TestContext())
@@ -142,7 +144,16 @@ namespace MahappsDemo.ViewModel
             }
         }
 
-        public string TestDescription { get; set; }
+        private string _testStageDescription;
+        public string TestStageDescription
+        {
+            get { return _testStageDescription; }
+            set
+            {
+                _testStageDescription = value;
+                NotifyOfPropertyChange(() => TestStageDescription);
+            }
+        }
 
         public void FretString(Fret fret)
         {
@@ -298,6 +309,11 @@ namespace MahappsDemo.ViewModel
         private void EnableCreateTest(bool isEnabled)
         {
             IsCreateNewTestEnabled = isEnabled;
+        }
+
+        private void CreateDescription()
+        {
+            TestStageDescription = string.Format(_testStageDescription, NumberOfQuestion, _currentQuestion);
         }
     }
 }
